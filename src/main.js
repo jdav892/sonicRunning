@@ -27,3 +27,11 @@ k.loadSprite("motobug", "graphics/motobug.png", {
         run: {from: 0, to: 4, loop: true, speed: 8}
     }
 });
+
+k.loadFont("maina", "fonts/mania.ttf");
+k.loadSound("city", "sounds/city.mp3");
+k.loadSound("destroy", "sounds/Destroy.wav");
+k.loadSound("hurt", "sounds/Hurt.wav");
+k.loadSound("hyper-ring", "sounds/HyperRing.wav");
+k.loadSound("jump", "sounds/Jump.wav");
+k.loadSound("ring", "sounds/Ring.wav");
