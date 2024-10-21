@@ -20,6 +20,9 @@ export default function game() {
         k.add([k.sprite("platforms"), k.pos(0, 450), k.scale(4)]),
         k.add([k.sprite("platforms"), k.pos(platformWidth, 450), k.scale(4)]),
     ];
+    
+    let score = 0;
+    let scoreMultiplier = 0;
 
     const sonic = sonicMaker(k.vec2(205, 745))
     sonic.setControls();
@@ -37,6 +40,13 @@ export default function game() {
         k.play("hurt", {volume: 0.5})
         //TODO
         k.go("gameover")
+    });
+    sonic.onCollide("ring", (ring) => {
+        k.play("ring", {volume: 0.5});
+        k.destroy(ring);
+        score++;
+        //TODO
+
     })
 
  
