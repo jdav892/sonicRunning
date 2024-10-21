@@ -39,18 +39,25 @@ export default function game() {
             k.destroy(enemy);
             sonic.play("jump");
             sonic.jump();
-            //
+            scoreMultiplier += 1;
+            score += 10 * scoreMultiplier;
+            scoreText.text = `SCORE: ${score}`
+            if(scoreMultiplier === 1) sonic.ringCollectionUI.text = "+10"
+            if(scoreMultiplier > 1) sonic.ringCollectionUI.text = `x${scoreMultiplier}`
+            k.wait(1, () => sonic.ringCollectionUI = "")
             return
         }
         k.play("hurt", {volume: 0.5})
-        //TODO
-        k.go("gameover")
+        k.setData("current-score", score);
+        k.go("game-over")
     });
     sonic.onCollide("ring", (ring) => {
         k.play("ring", {volume: 0.5});
         k.destroy(ring);
         score++;
         scoreText.text = `SCORE: ${score}`
+        sonic.ringCollectionUI.text = "+1",
+        k.wait(1, () => sonic.ringCollectionUI = "")
     })
 
  
@@ -101,6 +108,8 @@ export default function game() {
     ]);
     
     k.onUpdate(() => {
+            if(sonic.isGrounded()) scoreMultiplier = 0;
+
             if(bgPieces[1].pos.x < 0) {
                 bgPieces[0].moveTo(bgPieces[1].pos.x + bgPieceWidth * 2, 0);
                 bgPieces.push(bgPieces.shift());
