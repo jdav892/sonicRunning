@@ -41,7 +41,7 @@ k.loadSound("ring", "sounds/Ring.wav");
 
 k.scene("main-menu", mainMenu);
 
-k.scene("game", game)
+k.scene("game", game);
 
-k.scene("game-over", gameover)
+k.scene("game-over", gameover);
 k.go("main-menu");

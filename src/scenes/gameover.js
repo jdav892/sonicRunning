@@ -81,6 +81,6 @@ export default function gameover(citySfx){
             k.anchor("center"),
             k.pos(k.center().x, k.center().y + 350),
         ]);
-        k.onButtonPress("jump", () => k.go("game"));
+        k.onButtonPress("jumpKey", () => k.go("game"));
     });
 }
