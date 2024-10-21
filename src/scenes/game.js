@@ -63,7 +63,9 @@ export default function game() {
         score++;
         scoreText.text = `SCORE: ${score}`
         sonic.ringCollectionUI.text = "+1",
-        k.wait(1, () => sonic.ringCollectionUI = "")
+        k.wait(1, () => {
+            sonic.ringCollectionUI.text = "";
+        });
     })
 
  
