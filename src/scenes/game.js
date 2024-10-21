@@ -6,6 +6,8 @@ import { ringMaker } from "../entities/ring";
 
 export default function game() {
     k.setGravity(3100);
+    //storing sound in a constant so it doesn't play when not intended
+    const citySfx = k.play("city", {volume: 0.2, loop: true});
 
     const bgPieceWidth = 1920;
     const bgPieces = [
@@ -49,7 +51,7 @@ export default function game() {
         }
         k.play("hurt", {volume: 0.5})
         k.setData("current-score", score);
-        k.go("game-over")
+        k.go("game-over", {citySfx})
     });
     sonic.onCollide("ring", (ring) => {
         k.play("ring", {volume: 0.5});
