@@ -1,5 +1,6 @@
 import k from "../kaplayContext"
 import { sonicMaker } from "../entities/sonic"
+
 export default function game() {
     k.setGravity(3100);
 
@@ -18,6 +19,8 @@ export default function game() {
     ];
 
     const sonic = sonicMaker(k.vec2(205, 745))
+    sonic.setControls();
+    sonic.setEvents();
 
     let gameSpeed = 300
     k.loop(1, () => {
