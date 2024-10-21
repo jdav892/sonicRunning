@@ -3,7 +3,7 @@ import { sonicMaker } from "../entities/sonic"
 
 export default function mainMenu(){
     if (!k.getData("high-score")) k.setData("high-score", 0);
-    k.onButtonPress("jump", () => k.go("game"));
+    k.onButtonPress("jumpKey", () => k.go("game"));
 
     const bgPieceWidth = 1920;
     //Game objects are how entities are created in kaplay
