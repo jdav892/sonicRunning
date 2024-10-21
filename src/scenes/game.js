@@ -5,10 +5,10 @@ import { ringMaker } from "../entities/ring";
 
 
 export default function game() {
-    k.setGravity(3100);
+    
     //storing sound in a constant so it doesn't play when not intended
     const citySfx = k.play("city", {volume: 0.2, loop: true});
-
+    k.setGravity(3100);
     const bgPieceWidth = 1920;
     const bgPieces = [
         k.add([k.sprite("chemical-bg"), k.pos(0, 0), k.scale(2), k.opacity(0.8)]),
@@ -44,9 +44,13 @@ export default function game() {
             scoreMultiplier += 1;
             score += 10 * scoreMultiplier;
             scoreText.text = `SCORE: ${score}`
-            if(scoreMultiplier === 1) sonic.ringCollectionUI.text = "+10"
-            if(scoreMultiplier > 1) sonic.ringCollectionUI.text = `x${scoreMultiplier}`
-            k.wait(1, () => sonic.ringCollectionUI = "")
+            if(scoreMultiplier === 1)
+                sonic.ringCollectionUI.text = `+${10 * scoreMultiplier}`
+            if(scoreMultiplier > 1)
+                sonic.ringCollectionUI.text = `x${scoreMultiplier}`
+            k.wait(1, () => {
+                sonic.ringCollectionUI.text = "";
+            });
             return
         }
         k.play("hurt", {volume: 0.5})
