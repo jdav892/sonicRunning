@@ -28,7 +28,20 @@ export default function mainMenu(){
         k.add([k.sprite("platforms"), k.pos(platformWidth * 4, 450), k.scale(4)]),
     ];
 
-    sonicMaker(k.vec2(200,745))
+    k.add([
+        k.text("RING RUNNING", {font: "mania", size:96}),
+        k.pos(k.center().x, 200),
+        k.anchor("center"),
+    ]);
+    
+    k.add([
+        k.text("Press Space/Left Click/Touch Screen to Play", {font: "mania", size:32}),
+        k.anchor("center"),
+        //Inverted cartesian plane so - 200 moves this up 200
+        k.pos(k.center().x, k.center().y - 200),
+    ]);
+
+    sonicMaker(k.vec2(205,745))
 
     k.onUpdate(() => {
         if(bgPieces[1].pos.x < 0) {
