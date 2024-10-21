@@ -1,6 +1,8 @@
 import k from "../kaplayContext"
 import { sonicMaker } from "../entities/sonic"
-import { makeMotobug } from "../entities/motobug";
+import { motobugMaker} from "../entities/motobug";
+import { ringMaker } from "../entities/ring";
+
 
 export default function game() {
     k.setGravity(3100);
@@ -44,7 +46,7 @@ export default function game() {
     });
 
     const spawnMotoBug = () => {
-        const motobug = makeMotobug(k.vec2(1950, 773));
+        const motobug = motobugMaker(k.vec2(1950, 773));
         motobug.onUpdate(() => {
             if (gameSpeed){
                 motobug.move(-(gameSpeed + 300), 0);
@@ -62,7 +64,19 @@ export default function game() {
     };
     spawnMotoBug()
 
+    const spawnRing = () => {
+        const ring = ringMaker(k.vec2(1950, 745));
+        ring.onUpdate(() => {
+            ring.move(-gameSpeed, 0);
+        });
+        ring.onExitScreen(() => {
+            if(ring.pos.x < 0) k.destroy(ring);
+        });
 
+        const waitTime = k.rand(0.5, 3);
+        k.wait(waitTime, spawnRing);
+    }
+    spawnRing();
 
     k.add([
         k.rect(1920, 300),
